@@ -13,7 +13,7 @@ import java.io.IOException;
 public class MyBatisConfig
 {
     @Autowired
-    private DataSource dataSource;
+    public  DataSource dataSource;
 
     @Bean(name = "sqlSessionFactory")
     public SqlSessionFactoryBean sqlSessionFactoryBean(ApplicationContext applicationContext) throws IOException

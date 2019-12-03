@@ -2,7 +2,18 @@
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="Spring" name="Spring">
-      <configuration />
+      <configuration>
+        <fileset id="fileset" name="DeviceApplication" removed="false">
+          <file>file://$MODULE_DIR$/src/main/java/cn/bptop/device/configuration/DBconfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/cn/bptop/device/DeviceApplication.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/cn/bptop/device/configuration/LogConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/cn/bptop/device/configuration/MyBatisConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/cn/bptop/device/configuration/MyBatisScannerConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/cn/bptop/device/configuration/TransactionConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/cn/bptop/device/configuration/WebMvcConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/cn/bptop/device/configuration/WebSecurityConfig.java</file>
+        </fileset>
+      </configuration>
     </facet>
     <facet type="web" name="Web">
       <configuration>
