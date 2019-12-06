@@ -1,7 +1,8 @@
 package cn.bptop.device.pojo;
 
 
-public class DDevice {
+public class Device
+{
 
   private long dDeviceId;
   private String dDeviceName;

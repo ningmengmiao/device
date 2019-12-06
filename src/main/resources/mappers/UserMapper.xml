@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "cn.bptop.device.dao.UserMapper">
+	<resultMap id = "UserMap" type = "cn.bptop.device.pojo.User">
+		<result column = "u_id" jdbcType = "INTEGER" property = "uId"/>
+		<result column = "u_user_name" jdbcType = "INTEGER" property = "uUserName"/>
+		<result column = "u_user_id" jdbcType = "INTEGER" property = "uUserId"/>
+	</resultMap>
+	<insert id = "addUser"></insert>
+	<select id = "findUser" resultMap = "UserMap">
+		SELECT * FROM d_user
+		WHERE
+		<if test = "uuserId != null and  uuserId != ''">
+			u_user_id = #{uuserId}
+		</if>
+		<if test = "uuserName != null and  uuserName != ''">
+			u_user_name = #{uuserName}
+		</if>
+	</select>
+</mapper>

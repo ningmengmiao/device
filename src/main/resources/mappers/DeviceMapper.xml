@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "cn.bptop.device.dao.DeviceMapper">
+	<resultMap id = "DeviceMap" type = "cn.bptop.device.pojo.Device">
+		<result column = "d_device_id" jdbcType = "INTEGER" property = "dDeviceId"/>
+		<result column = "d_device_name" jdbcType = "INTEGER" property = "dDeviceName"/>
+		<result column = "d_device_cid" jdbcType = "INTEGER" property = "dDeviceCid"/>
+		<result column = "d_device_type" jdbcType = "INTEGER" property = "dDeviceType"/>
+		<result column = "d_production_time" jdbcType = "INTEGER" property = "dProductionTime"/>
+		<result column = "d_test_time" jdbcType = "INTEGER" property = "dTestTime"/>
+		<result column = "d_manufacturer" jdbcType = "INTEGER" property = "dManufacturer"/>
+		<result column = "d_plant" jdbcType = "INTEGER" property = "dPlant"/>
+		<result column = "d_site" jdbcType = "INTEGER" property = "dSite"/>
+		<result column = "d_space" jdbcType = "INTEGER" property = "dSpace"/>
+		<result column = "d_status" jdbcType = "INTEGER" property = "dStatus"/>
+		<result column = "d_pic" jdbcType = "INTEGER" property = "dPic"/>
+		<result column = "d_pic_id" jdbcType = "INTEGER" property = "dPicId"/>
+		<result column = "d_note" jdbcType = "INTEGER" property = "dNote"/>
+		<result column = "d_log" jdbcType = "INTEGER" property = "dLog"/>
+		<result column = "d_is_deleted" jdbcType = "INTEGER" property = "dIsDeleted"/>
+	</resultMap>
+
+	<select id = "findDevice" resultMap = "DeviceMap">
+		select * from d_device
+		<where>
+			<if test = "dDeviceId != null and  dDeviceId != ''">
+				d_device_id = #{dDeviceId}
+			</if>
+			<if test = "dDeviceName != null and  dDeviceName!= ''">
+				and d_device_name= #{dDeviceName}
+			</if>
+			<if test = " dPlant!= null and dPlant != ''">
+				and d_plant= #{dPlant}
+			</if>
+			<if test = " dStatus!= null and dStatus != ''">
+				and d_status= #{dStatus}
+			</if>
+			<if test = " dPic!= null and  dPic!= ''">
+				and d_pic= #{dPic}
+			</if>
+			and d_is_deleted = 0
+		</where>
+	</select>
+	<update id = "deleteDevice">
+		UPDATE d_device
+		SET d_is_deleted = 1
+		WHERE d_device_id =#{ddeviceId}
+
+	</update>
+	<update id = "updateDevice">
+		UPDATE d_device
+		<trim prefix="set" suffixOverrides=",">
+		<if test = "ddeviceName != null and ddeviceName != ''">
+			d_device_name=#{ddeviceName},
+		</if>
+		<if test = " ddeviceCid != null and ddeviceCid != ''">
+			d_device_cid=#{ddeviceCid},
+		</if>
+		<if test = " ddeviceType != null and  ddeviceType!= ''">
+			d_device_type=#{ddeviceType},
+		</if>
+		<if test = " dproductionTime != null and dproductionTime != ''">
+			d_production_time=#{dproductionTime},
+		</if>
+		<if test = " dmanufacturer != null and dmanufacturer != ''">
+			d_manufacturer=#{dmanufacturer},
+		</if>
+		<if test = " dtestTime != null and  dtestTime != ''">
+			d_test_time=#{dtestTime},
+		</if>
+		<if test = "dplant != null and dplant != ''">
+			d_plant=#{dplant},
+		</if>
+		<if test = " dsite != null and  dsite != ''">
+			d_site=#{dsite},
+		</if>
+		<if test = " dspace != null and  dspace != ''">
+			d_space=#{dspace},
+		</if>
+		<if test = "dstatus != null and  dstatus != ''">
+			d_status=#{dstatus},
+		</if>
+		<if test = " dpic != null and  dpic != ''">
+			d_pic=#{dpic},
+		</if>
+		<if test = " dpicId != null and  dpicId != ''">
+			d_pic_id=#{dpicId},
+		</if>
+		<if test = "dnote != null and dnote != ''">
+			d_note=#{dnote},
+		</if>
+			<if test = " dlog!= null and  dlog!= ''">
+			d_log=#{dlog}
+		</if>
+		</trim>
+		WHERE
+		d_device_id =#{ddeviceId}
+	</update>
+</mapper>

@@ -22,6 +22,7 @@ public class MyBatisConfig
         sqlSessionFactoryBean.setTypeAliasesPackage("cn.bptop.device.pojo");
         sqlSessionFactoryBean.setDataSource(dataSource);
         sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath*:mappers/*.xml"));
+
         return sqlSessionFactoryBean;
     }
 }

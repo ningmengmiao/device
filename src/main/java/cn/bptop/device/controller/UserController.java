@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import static cn.bptop.device.until.Ding.getAccess_token;
 import static cn.bptop.device.until.Ding.getDdUser;
 import static cn.bptop.device.until.Ding.getDdUserId;
 import static cn.bptop.device.until.Json.getJson;
@@ -22,16 +23,17 @@ public class UserController
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
     @ResponseBody
-    @RequestMapping("/metering/authCode")
+    @RequestMapping("/device/authCode")
     public String authCode(String authCode) throws ApiException
     {
         OapiUserGetResponse response = getDdUser(getDdUserId(authCode));
         LOGGER.info(response.getName() + authCode);
+
         return getJson(response);
     }
 
     @ResponseBody
-    @RequestMapping("/metering/updateUser")
+    @RequestMapping("/device/updateUser")
     public int updateUser() throws ApiException
     {
         return updateUser.updateUser();

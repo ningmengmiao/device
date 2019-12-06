@@ -1,5 +1,6 @@
 package cn.bptop.device.until;
 
+import cn.bptop.device.pojo.User;
 import com.dingtalk.api.DefaultDingTalkClient;
 import com.dingtalk.api.DingTalkClient;
 import com.dingtalk.api.request.*;
@@ -18,8 +19,8 @@ public class Ding
     {
         DefaultDingTalkClient client = new DefaultDingTalkClient("https://oapi.dingtalk.com/gettoken");
         OapiGettokenRequest request = new OapiGettokenRequest();
-        request.setAppkey("dingj84o3tsgywd2f8bj");
-        request.setAppsecret("TKZCtUnpFyaROqHU2Y6n_kfZkU9XjlTNnxt7JNmdFZ0Vjb4qNHj2_QnIpbQNNGn7");
+        request.setAppkey("dingpfm2haykpoaa3pyg");
+        request.setAppsecret("sAYEt5J3TFPvXZ-vfgBco7IqvQskRE6DhE0HAD-kxTdrtqW7mQG0_8jMHDW_kP06");
         request.setHttpMethod("GET");
         OapiGettokenResponse response = client.execute(request);
         return response.getAccessToken();
@@ -54,9 +55,9 @@ public class Ding
         User user = new User();
         OapiUserGetResponse response;
         response = getDdUser(userId);
-        user.setDdUserid(response.getUserid());
-        user.setDdName(response.getName());
-        user.setUserId(response.getJobnumber());
+        user.setUUserId(response.getUserid());
+        user.setUUserName(response.getName());
+
         return user;
     }
 
@@ -65,7 +66,7 @@ public class Ding
     {
         OapiMessageCorpconversationAsyncsendV2Request request = new OapiMessageCorpconversationAsyncsendV2Request();
         request.setUseridList(userid);
-        request.setAgentId(301470841L);
+        request.setAgentId(304258505L);
         request.setToAllUser(false);
         return request;
     }

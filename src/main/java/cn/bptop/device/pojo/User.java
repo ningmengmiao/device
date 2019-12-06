@@ -1,7 +1,8 @@
 package cn.bptop.device.pojo;
 
 
-public class DUser {
+public class User
+{
 
   private long uId;
   private String uUserName;
