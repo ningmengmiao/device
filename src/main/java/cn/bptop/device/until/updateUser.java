@@ -25,7 +25,6 @@ public class updateUser
 
     public int updateUser() throws ApiException
     {
-        userMapper.deleteUser();
         int counter = 0;
         DingTalkClient client = new DefaultDingTalkClient("https://oapi.dingtalk.com/department/list");
         OapiDepartmentListRequest request = new OapiDepartmentListRequest();

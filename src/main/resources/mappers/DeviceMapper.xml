@@ -19,7 +19,25 @@
 		<result column = "d_log" jdbcType = "INTEGER" property = "dLog"/>
 		<result column = "d_is_deleted" jdbcType = "INTEGER" property = "dIsDeleted"/>
 	</resultMap>
-
+	<insert id = "newDevice">
+		insert into d_device
+		values (default,
+		        #{ddeviceName},
+		        #{ddeviceCid},
+		        #{ddeviceType},
+		        #{dproductionTime},
+		        #{dtestTime},
+		        #{dmanufacturer},
+		        #{dplant},
+		        #{dsite},
+		        #{dspace},
+		        "正常",
+		        #{dpic},
+		        #{dpicId},
+		        #{dnote},
+		        #{dlog},
+		        0)
+	</insert>
 	<select id = "findDevice" resultMap = "DeviceMap">
 		select * from d_device
 		<where>
@@ -40,6 +58,28 @@
 			</if>
 			and d_is_deleted = 0
 		</where>
+	</select>
+	<select id = "filterDevice" resultMap = "DeviceMap">
+		SELECT * FROM d_device
+		<where>
+			<if test = "picId!= null and picId!=''">
+				d_pic_id=#{picId}
+			</if>
+			<if test = "devcieName!= null and devcieName!=''">
+				and d_device_name=#{devcieName}
+			</if>
+			<if test = "plant!= null and plant!=''">
+				and d_plant=#{plant}
+			</if>
+		</where>
+	</select>
+	<select id = "findPlant" resultType = "java.util.Map">
+		SELECT DISTINCT d_plant
+		from d_device
+	</select>
+	<select id = "findDeviceName" resultType = "java.util.Map">
+		SELECT DISTINCT d_device_name
+		from d_device
 	</select>
 	<update id = "deleteDevice">
 		UPDATE d_device
@@ -95,5 +135,10 @@
 		</trim>
 		WHERE
 		d_device_id =#{ddeviceId}
+	</update>
+	<update id = "updateDeviceLog">
+		UPDATE d_device
+		SET d_log = concat(d_log, #{log})
+		WHERE d_device_id = #{ddeviceId}
 	</update>
 </mapper>

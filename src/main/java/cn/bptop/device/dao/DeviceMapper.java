@@ -7,6 +7,7 @@ import org.assertj.core.util.VisibleForTesting;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 @Component
 @Mapper
@@ -31,10 +32,32 @@ public interface DeviceMapper
                      @Param("dproductionTime") String dproductionTime,
                      @Param("dsite") String dsite,
                      @Param("dspace") String dspace,
-                     @Param("dlog") String dlog,
-                     @Param("dstatus") String dstatus
 
+                     @Param("dstatus") String dstatus
+    );
+
+    int newDevice(
+            @Param("ddeviceCid") String ddeviceCid,
+            @Param("ddeviceName") String ddeviceName,
+            @Param("ddeviceType") String ddeviceType,
+            @Param("dmanufacturer") String dmanufacturer,
+            @Param("dtestTime") String dtestTime,
+            @Param("dnote") String dnote,
+            @Param("dpic") String dpic,
+            @Param("dpicId") String dpicId,
+            @Param("dplant") String dplant,
+            @Param("dproductionTime") String dproductionTime,
+            @Param("dsite") String dsite,
+            @Param("dspace") String dspace,
+            @Param("dlog") String dlog
     );
     int deleteDevice ( @Param("ddeviceId") String ddeviceId );
 
+    int updateDeviceLog(@Param("ddeviceId") String ddeviceId, @Param("log") String log);
+
+    List<Device> filterDevice(@Param("picId") String picId, @Param("devcieName") String deviceName, @Param("plant") String plant);
+
+    List<Map> findPlant();
+
+    List<Map> findDeviceName();
 }

@@ -7,6 +7,8 @@ import com.dingtalk.api.request.*;
 import com.dingtalk.api.response.*;
 import com.taobao.api.ApiException;
 
+import java.util.List;
+
 /**
  * 钉钉API
  * 获取令牌及用户信息
@@ -82,19 +84,32 @@ public class Ding
         return response;
     }
 
-    public static void sendCardMsg(String userid, String title, String markdown, String url) throws ApiException
+    //    获取角色下的员工列表
+    public static List getRoleUser(String roleId) throws ApiException
+    {
+        DingTalkClient client = new DefaultDingTalkClient("https://oapi.dingtalk.com/topapi/role/simplelist");
+        OapiRoleSimplelistRequest request = new OapiRoleSimplelistRequest();
+        request.setRoleId(Long.valueOf(roleId));
+        OapiRoleSimplelistResponse response = client.execute(request, getAccess_token());
+        return response.getResult().getList();
+    }
+
+    public static OapiMessageCorpconversationAsyncsendV2Response sendCardMsg(String userid, String title, String markdown, String singleTitle, String url) throws ApiException
     {
         DingTalkClient client = new DefaultDingTalkClient("https://oapi.dingtalk.com/topapi/message/corpconversation/asyncsend_v2");
-        OapiMessageCorpconversationAsyncsendV2Request request = getMsgRequest(userid);
+        OapiMessageCorpconversationAsyncsendV2Request request = new OapiMessageCorpconversationAsyncsendV2Request();
+        request.setUseridList(userid);
+        request.setAgentId(304258505L);
+        request.setToAllUser(false);
         OapiMessageCorpconversationAsyncsendV2Request.Msg msg = new OapiMessageCorpconversationAsyncsendV2Request.Msg();
         msg.setActionCard(new OapiMessageCorpconversationAsyncsendV2Request.ActionCard());
         msg.getActionCard().setTitle(title);
         msg.getActionCard().setMarkdown(markdown);
-        msg.getActionCard().setSingleTitle("查看详情");
-        msg.getActionCard().setSingleUrl(url);
+        msg.getActionCard().setSingleTitle("测试测试");
+        msg.getActionCard().setSingleUrl("https://www.baidu.com");
         msg.setMsgtype("action_card");
-        request.setHttpMethod("GET");
         request.setMsg(msg);
         OapiMessageCorpconversationAsyncsendV2Response response = client.execute(request, getAccess_token());
+        return response;
     }
 }

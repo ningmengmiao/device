@@ -8,16 +8,32 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class Json
 {
+    // 定义jackson对象
+    private static final ObjectMapper MAPPER = new ObjectMapper();
     public static String getJson(Object object)
     {
         try
         {
-            return new ObjectMapper().writeValueAsString(object);
+            return MAPPER.writeValueAsString(object);
         }
         catch (JsonProcessingException e)
         {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public static <T> T jsonToObject(String jsonData, Class<T> beanType)
+    {
+        try
+        {
+            T t = MAPPER.readValue(jsonData, beanType);
+            return t;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

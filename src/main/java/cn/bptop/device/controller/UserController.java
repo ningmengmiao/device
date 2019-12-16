@@ -10,9 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import static cn.bptop.device.until.Ding.getAccess_token;
-import static cn.bptop.device.until.Ding.getDdUser;
-import static cn.bptop.device.until.Ding.getDdUserId;
+import static cn.bptop.device.until.Ding.*;
 import static cn.bptop.device.until.Json.getJson;
 
 @Controller
@@ -28,8 +26,15 @@ public class UserController
     {
         OapiUserGetResponse response = getDdUser(getDdUserId(authCode));
         LOGGER.info(response.getName() + authCode);
-
+        System.out.println(getAccess_token());
         return getJson(response);
+    }
+
+    @ResponseBody
+    @RequestMapping("/device/getRoleUser")
+    public String getRoleUserC(String roleId) throws ApiException
+    {
+        return getJson(getRoleUser(roleId));
     }
 
     @ResponseBody
