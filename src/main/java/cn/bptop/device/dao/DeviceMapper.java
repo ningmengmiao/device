@@ -3,7 +3,6 @@ package cn.bptop.device.dao;
 import cn.bptop.device.pojo.Device;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.assertj.core.util.VisibleForTesting;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

@@ -2,8 +2,8 @@ package cn.bptop.device.controller;
 
 import cn.bptop.device.dao.DeviceMapper;
 import cn.bptop.device.pojo.Device;
+import cn.bptop.device.pojo.InformatizationDevice;
 import cn.bptop.device.service.DeviceService;
-
 import cn.bptop.device.service.EmailServer;
 import com.dingtalk.api.response.OapiMessageCorpconversationAsyncsendV2Response;
 import com.taobao.api.ApiException;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.io.IOException;
 
 import static cn.bptop.device.until.Ding.sendCardMsg;
-import static cn.bptop.device.until.FileTool.deleteFile;
 import static cn.bptop.device.until.Json.getJson;
 import static cn.bptop.device.until.Json.jsonToObject;
 
